@@ -1,6 +1,6 @@
 ;; The first three lines of this file were inserted by DrRacket. They record metadata
 ;; about the language level of this file in a form that our tools can easily process.
-#reader(lib "htdp-intermediate-reader.ss" "lang")((modname parameterization-starter) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f ())))
+#reader(lib "htdp-intermediate-reader.ss" "lang")((modname parameterization-starter) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
 ;; parameterization-starter.rkt
 
 (* pi (sqr 4)) ;area of circle radius 4
@@ -115,3 +115,11 @@
              (cons (first lon)
                    (negative-only (rest lon)))
              (negative-only (rest lon)))]))
+
+(define (filter2 fn lst)
+  (cond ((empty? lst) '())
+        (else
+         (if (fn (first lst))
+             (cons (first lst)
+                   (filter2 fn (rest lst)))
+             (filter2 fn (rest lst))))))
